@@ -29,7 +29,7 @@ async def upload_file_to_cos(
         headers = generate_headers(file.file_type, content_length, UPLOAD_HOST, upload_info, user_agent)
 
         async with httpx.AsyncClient() as client:
-            response = await client.put(url, headers=headers, content=file_data_bytes, timeout=timeout)
+            response = await client.put(url, headers=headers, data=file_data_bytes, timeout=timeout)
             if response.status_code != 200:
                 raise Exception(f"Request failed. Status code: {response.status_code}, Response: {response.text}")
 

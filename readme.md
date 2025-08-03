@@ -15,6 +15,7 @@
 - 本项目仅限**学习研究用途**
 - 请严格遵守腾讯元宝的[使用条款](https://yuanbao.tencent.com/)
 - `hy_token` 有时效性，过期需重新获取
+- **API已更新**：现在支持更完整的Cookie格式，包括 `_qimei_h38`、`ptoken`、`_qimei_i_1`、`ttwid` 等字段以提高请求成功率
 
 ## 🚀 快速开始
 
@@ -50,7 +51,8 @@ docker run -d -p 8000:8000 --name yuanbao-api yuanbao-free-api
 1. 访问[腾讯元宝](https://yuanbao.tencent.com/)
 2. 打开开发者工具（F12）
 3. 捕获对话请求获取：
-   - Cookie中的 `hy_user` 和 `hy_token`
+   - Cookie中的 `hy_user` 和 `hy_token`（必需）
+   - Cookie中的 `_qimei_h38`、`ptoken`、`_qimei_i_1`、`ttwid`（可选，建议添加以提高成功率）
    - 请求体中的 `agent_id`
 
 #### 自动获取
@@ -72,6 +74,12 @@ hy_source = "web"
 hy_user = ""    # 替换为你的用户ID
 hy_token = ""   # 替换为你的token
 
+# 新增的Cookie字段（可选，如果有的话可以添加以提高成功率）
+_qimei_h38 = ""  # 可选
+ptoken = ""      # 可选
+_qimei_i_1 = "" # 可选
+ttwid = ""       # 可选
+
 agent_id = "naQivTmsDa"
 chat_id = ""    # 可选，如果不提供会自动创建
 
@@ -85,6 +93,11 @@ data = {
     "agent_id": agent_id,
     "hy_source": hy_source,
     "hy_user": hy_user,
+    # 添加新的Cookie字段（可选，如果有的话可以添加）
+    "_qimei_h38": _qimei_h38,
+    "ptoken": ptoken,
+    "_qimei_i_1": _qimei_i_1,
+    "ttwid": ttwid,
     "file": {
         "file_name": file_name,
         "file_data": file_data ,
@@ -114,6 +127,11 @@ response = client.chat.completions.create(
         "agent_id": agent_id,
         "chat_id": chat_id,
         "should_remove_conversation": False,
+        # 添加新的Cookie字段（可选，如果有的话可以添加）
+        "_qimei_h38": _qimei_h38,
+        "ptoken": ptoken,
+        "_qimei_i_1": _qimei_i_1,
+        "ttwid": ttwid,
         "multimedia": multimedia,
     },
 )

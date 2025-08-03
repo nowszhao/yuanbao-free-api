@@ -159,6 +159,9 @@ class YuanbaoLogin:
 
             if cookies:
                 logger.info("登录成功")
+                logger.info("注意：此脚本只能获取基本的登录cookies（hy_user, hy_token等）")
+                logger.info("如需获取完整的Cookie字段（_qimei_h38, ptoken, _qimei_i_1, ttwid），")
+                logger.info("请在浏览器中手动访问 https://yuanbao.tencent.com 并从开发者工具中复制完整Cookie")
                 return cookies
             else:
                 logger.warning("登录响应中没有cookies")

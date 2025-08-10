@@ -33,7 +33,7 @@ async def create_completion_stream(
         "agentId": chat_request.agent_id,
         "supportHint": 1,
         "version": "v2",
-        isTemporary: true,
+        "isTemporary": true,
         "chatModelId": chat_request.chat_model_id,
     }
     if chat_request.support_functions:
